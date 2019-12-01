@@ -1,0 +1,14 @@
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'idea'
+}
+
+//https://qiita.com/cypher256/items/f3db6bba86692c3c7733
+wrapper {
+    doFirst {
+        def versionService = new URL("https://services.gradle.org/versions/current")
+        gradleVersion = new JsonSlurper().parseText(versionService.text).version
+        print("gradleVersion: $gradleVersion")
+    }
+}
