@@ -13,7 +13,8 @@ plugins {
 
     id("com.github.ben-manes.versions") version "0.27.0"
 
-    id("de.fayard.buildSrcVersions") version "0.7.0"
+//    id("de.fayard.buildSrcVersions") version "0.7.0"
+    id("de.fayard.refreshVersions") version "0.8.6"
 
     id("se.patrikerdes.use-latest-versions") version "0.2.13"
 
@@ -41,8 +42,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
 
-tasks.named("check") {
-    dependsOn("dependencyCheckAnalyze")
+tasks.check {
+    dependsOn(tasks.dependencyCheckAggregate)
+    dependsOn("refreshVersions")
 }
 
 // https://www.youtube.com/watch?v=_s-0MbA5Gvw
