@@ -5,7 +5,7 @@
  */
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.3.41"
+    id("org.jetbrains.kotlin.jvm") version "1.3.61"
 
     id("idea")
 
@@ -50,7 +50,7 @@ tasks.check {
 // https://www.youtube.com/watch?v=_s-0MbA5Gvw
 dependencyCheck {
     analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
-        assemblyEnabled = false
+        assemblyEnabled= false
         nugetconfEnabled = false
         nuspecEnabled = false
         nodeEnabled = false
@@ -71,6 +71,6 @@ application {
 }
 
 tasks.wrapper {
-    gradleVersion = "6.0"
+    gradleVersion = "6.0.1"
     distributionType = Wrapper.DistributionType.ALL
 }
