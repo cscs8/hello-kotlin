@@ -8,6 +8,6 @@
  */
 
 rootProject.name = "hello-kotlin"
-//plugins {
-//  id("com.gradle.enterprise").version("3.1")
-//}
+plugins {
+  id("com.gradle.enterprise").version("3.1")
+}
