@@ -26,7 +26,7 @@ plugins {
     id("se.patrikerdes.use-latest-versions") version "0.2.13"
 
 
-    id("com.google.protobuf") version "0.8.8"
+    id("com.google.protobuf") version "0.8.10"
     // Apply the application plugin to add support for building a CLI application.
     application
 
@@ -116,11 +116,11 @@ dependencies {
     implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
     implementation("io.grpc:grpc-protobuf:${grpcVersion}")
     implementation("io.grpc:grpc-stub:${grpcVersion}")
-    compileOnly("javax.annotation:javax.annotation-api:1.2")
+    compileOnly("javax.annotation:javax.annotation-api:1.3.2")
 
     testImplementation("io.grpc:grpc-testing:${grpcVersion}")  // gRCP testing utilities
     testImplementation("junit:junit:4.12")
-    testImplementation("org.mockito:mockito-core:2.28.2")
+    testImplementation("org.mockito:mockito-core:3.2.0")
 }
 //plugins.findPlugin("com.google.protobuf"). {
 
