@@ -8,12 +8,22 @@
  */
 
 rootProject.name = "hello-kotlin"
+pluginManagement {
+    repositories {
+        google()
+        jcenter()
+        maven( // The google mirror is less flaky than mavenCentral()
+            url = "https://maven-central.storage-download.googleapis.com/repos/central/data/"
+        )
+        gradlePluginPortal()
+    }
+}
 plugins {
-  id("com.gradle.enterprise").version("3.1")
+    id("com.gradle.enterprise").version("3.1")
 }
 gradleEnterprise {
- buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-   }
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
 }
