@@ -18,8 +18,6 @@ plugins {
     id("org.owasp.dependencycheck") version "5.2.4"
 
     id("com.github.ben-manes.versions") version "0.27.0"
-
-    id("com.google.protobuf") version "0.8.10"
     // Apply the application plugin to add support for building a CLI application.
     application
 
@@ -74,5 +72,6 @@ dependencyCheck {
 
 application {
     // Define the main class for the application.
-    mainClassName = "study.AppKt"
+//    mainClassName = "study.AppKt"
+    mainClassName = "study.ParentKt"
 }
