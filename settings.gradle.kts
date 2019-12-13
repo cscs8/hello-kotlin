@@ -8,6 +8,7 @@
  */
 
 rootProject.name = "hello-kotlin"
+include("kotlin-study", "hello-grpc")
 pluginManagement {
     repositories {
         google()
