@@ -2,8 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="hello-kotlin.main" target="1.10" />
-      <module name="hello-kotlin.test" target="1.10" />
+      <module name="hello-kotlin.hello-grpc.main" target="1.10" />
+      <module name="hello-kotlin.hello-grpc.test" target="1.10" />
+      <module name="hello-kotlin.kotlin-study.main" target="1.10" />
+      <module name="hello-kotlin.kotlin-study.test" target="1.10" />
     </bytecodeTargetLevel>
   </component>
 </project>
