@@ -10,8 +10,6 @@ plugins {
     id("org.owasp.dependencycheck") version "5.2.4"
 
     id("de.fayard.refreshVersions") version "0.8.6"
-
-    application
 }
 subprojects {
 
@@ -25,6 +23,25 @@ subprojects {
 
         plugin("org.gradle.application")
 
+        // application
+        plugin("org.gradle.application")
+
+    }
+    tasks {
+        withType<JavaCompile> {
+            options.encoding = "UTF-8"
+        }
+
+        withType<AbstractCompile> {
+            sourceCompatibility = JavaVersion.VERSION_1_8.majorVersion
+            targetCompatibility = JavaVersion.VERSION_1_8.majorVersion
+        }
+
+        named<DefaultTask>("check") {
+            dependsOn(dependencyCheckAggregate)
+            dependsOn(rootProject.tasks.refreshVersions)
+        }
+
     }
 
 }
@@ -34,45 +51,21 @@ tasks {
         distributionType = Wrapper.DistributionType.ALL
     }
 
-    withType<JavaCompile> {
-        options.encoding = "UTF-8"
-    }
 
-    withType<AbstractCompile> {
-        sourceCompatibility = JavaVersion.VERSION_1_8.majorVersion
-        targetCompatibility = JavaVersion.VERSION_1_8.majorVersion
+    dependencyCheck {
+        analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
+            assemblyEnabled = false
+            nugetconfEnabled = false
+            nuspecEnabled = false
+            nodeEnabled = false
+            nodeAuditEnabled = false
+            swiftEnabled = false
+            bundleAuditEnabled = false
+            rubygemsEnabled = false
+            golangDepEnabled = false
+            golangModEnabled = false
+            pyDistributionEnabled = false
+            pyPackageEnabled = false
+        })
     }
-
-    named<DefaultTask>("check") {
-        dependsOn(dependencyCheckAggregate)
-        dependsOn("refreshVersions")
-    }
-//    withType<DefaultTask.get> {
-//        dependsOn(dependencyCheckAggregate)
-//        dependsOn("refreshVersions")
-//    }
-//    check {
-//        dependsOn(dependencyCheckAggregate)
-//        dependsOn("refreshVersions")
-//    }
 }
-
-
-
-dependencyCheck {
-    analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
-        assemblyEnabled = false
-        nugetconfEnabled = false
-        nuspecEnabled = false
-        nodeEnabled = false
-        nodeAuditEnabled = false
-        swiftEnabled = false
-        bundleAuditEnabled = false
-        rubygemsEnabled = false
-        golangDepEnabled = false
-        golangModEnabled = false
-        pyDistributionEnabled = false
-        pyPackageEnabled = false
-    })
-}
-
