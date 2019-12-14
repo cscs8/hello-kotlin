@@ -1,7 +1,7 @@
 # kotlin 
 
 - master
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cscs8/hello-kotlin/Java%20CI)
+![Actions Status](https://github.com/cscs8/hello-kotlin/workflows/Java%20CI/badge.svg)
 
 - develop
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cscs8/hello-kotlin/Java%20CI/develop)
+![Actions Status](https://github.com/cscs8/hello-kotlin/workflows/Java%20CI/badge.svg?branch=develop)
