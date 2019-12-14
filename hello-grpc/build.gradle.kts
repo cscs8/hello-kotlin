@@ -1,22 +1,10 @@
-
 plugins {
-    kotlin("jvm") version "1.3.61"
-
-    idea
-
-    id("org.owasp.dependencycheck") version "5.2.4"
-
-    id("com.github.ben-manes.versions") version "0.27.0"
-
     id("com.google.protobuf") version "0.8.10"
-
-    application
 }
 //---------------------------------------
 // grpc.
 //---------------------------------------
 
-apply(from = "grpc.gradle")
 
 repositories {
     google()
@@ -25,23 +13,32 @@ repositories {
     mavenLocal()
 }
 
-
-
 dependencies {
 
-    val kotlinVersion : String by rootProject.extra
-    val grpcVersion : String by rootProject.extra   // CURRENT_GRPC_VERSION
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    implementation(kotlin("stdlib"))
-    implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
-    implementation("io.grpc:grpc-protobuf:${grpcVersion}")
-    implementation("io.grpc:grpc-stub:${grpcVersion}")
+//    val kotlinVersion: String by rootProject.extra
+//    val grpcVersion: String by rootProject.extra   // CURRENT_GRPC_VERSION
+    implementation(platform(kotlin("bom")))
+    implementation(kotlin("stdlib-jdk8"))
+
+    implementation(platform("io.grpc:grpc-bom"))
+    implementation("io.grpc:grpc-netty-shaded")
+    implementation("io.grpc:grpc-protobuf")
+    implementation("io.grpc:grpc-stub")
     compileOnly("javax.annotation:javax.annotation-api:1.3.2")
 
-    testImplementation("io.grpc:grpc-testing:${grpcVersion}")  // gRCP testing utilities
+    testImplementation("io.grpc:grpc-testing")  // gRCP testing utilities
     testImplementation("junit:junit:4.12")
     testImplementation("org.mockito:mockito-core:3.2.0")
 }
+
+apply(from = "grpc.gradle")
+
+//tasks.check {
+//    dependsOn(tasks.dependencyCheckAggregate)
+//    dependsOn("refreshVersions")
+//}
+
+
 //plugins.findPlugin("com.google.protobuf"). {
 
 // https://github.com/rouzwawi/grpc-kotlin-1/blob/master/build.gradle.kts
