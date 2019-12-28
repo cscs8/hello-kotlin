@@ -1,6 +1,8 @@
 package study
 
 import org.junit.Test
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
@@ -8,12 +10,22 @@ class Java8TryTest {
     val test = Java8Try()
     @Test
     fun supplierTest() {
-        assertEquals(test.supplier.get(), "Hello supplier!")
+        assertEquals("Hello supplier!", test.supplier.get())
     }
 
     @Test
-    @Ignore
     fun consumerTest() {
-//        assertEquals(test.consumer.accept("Hello World!"), "Hello consumer! -> HelloWorld!")
+        // https://teratail.com/questions/3694
+        val out = ByteArrayOutputStream()
+        System.setOut(PrintStream(out))
+
+        test.consumer.accept("Hello World!")
+
+        assertEquals("Hello consumer! -> Hello World!".plus(System.lineSeparator()), out.toString())
+    }
+
+    @Test
+    fun functionTest() {
+        assertEquals(3, test.function.apply("aaa"))
     }
 }
