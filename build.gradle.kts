@@ -26,6 +26,8 @@ subprojects {
         // application
         plugin("org.gradle.application")
 
+        plugin("jacoco")
+
     }
     tasks {
         withType<JavaCompile> {
