@@ -33,8 +33,8 @@ subprojects {
         }
 
         withType<AbstractCompile> {
-            sourceCompatibility = JavaVersion.VERSION_1_8.majorVersion
-            targetCompatibility = JavaVersion.VERSION_1_8.majorVersion
+            sourceCompatibility = JavaVersion.VERSION_1_10.majorVersion
+            targetCompatibility = JavaVersion.VERSION_1_10.majorVersion
         }
 
         named<DefaultTask>("check") {
