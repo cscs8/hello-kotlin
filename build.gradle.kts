@@ -10,7 +10,7 @@ plugins {
 
     id("de.fayard.refreshVersions") version "0.8.6"
 
-    id("com.github.spotbugs") version "3.0.0" apply false
+    id("com.github.spotbugs") version "3.0.0"
 }
 apply(from = "gradle/owasp.gradle.kts")
 subprojects {
@@ -41,6 +41,11 @@ subprojects {
             dependsOn(dependencyCheckAnalyze)
             dependsOn(rootProject.tasks.refreshVersions)
         }
+        // To generate an HTML report instead of XML
+        withType<com.github.spotbugs.SpotBugsTask> {
+            reports.xml.isEnabled = false
+            reports.html.isEnabled = true
+        }
 
         dependencyCheck {
             analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
@@ -62,6 +67,11 @@ subprojects {
             val skipList: List<String> by project
             skipConfigurations = skipList
         }
+
+        spotbugs {
+            toolVersion = "4.0.0-beta4"
+        }
+
     }
 }
 tasks {
