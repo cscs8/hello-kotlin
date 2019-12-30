@@ -3,7 +3,6 @@ package study
 import org.junit.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
-import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 class Java8TryTest {
@@ -15,13 +14,17 @@ class Java8TryTest {
 
     @Test
     fun consumerTest() {
+        val charset = Charsets.UTF_8
         // https://teratail.com/questions/3694
         val out = ByteArrayOutputStream()
-        System.setOut(PrintStream(out))
+        System.setOut(PrintStream(out, false, charset))
 
         test.consumer.accept("Hello World!")
 
-        assertEquals("Hello consumer! -> Hello World!".plus(System.lineSeparator()), out.toString())
+        assertEquals(
+            "Hello consumer! -> Hello World!".plus(System.lineSeparator()),
+            out.toString(charset)
+        )
     }
 
     @Test
