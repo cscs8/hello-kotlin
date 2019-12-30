@@ -2,8 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="hello-kotlin.hello-grpc.main" target="8" />
-      <module name="hello-kotlin.hello-grpc.test" target="8" />
       <module name="hello-kotlin.kotlin-study.main" target="8" />
       <module name="hello-kotlin.kotlin-study.test" target="8" />
       <module name="hello-kotlin.kotlin-webapp.main" target="8" />

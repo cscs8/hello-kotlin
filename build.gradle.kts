@@ -1,5 +1,4 @@
 val kotlinVersion by extra("1.3.61")
-val grpcVersion by extra("1.25.0")   // CURRENT_GRPC_VERSION
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
