@@ -40,10 +40,26 @@ subprojects {
         }
 
         named<DefaultTask>("check") {
-            dependsOn(dependencyCheckAggregate)
+            dependsOn(dependencyCheckAnalyze)
             dependsOn(rootProject.tasks.refreshVersions)
         }
 
+        dependencyCheck {
+            analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
+                assemblyEnabled = false
+                nugetconfEnabled = false
+                nuspecEnabled = false
+                nodeEnabled = false
+                nodeAuditEnabled = false
+                swiftEnabled = false
+                bundleAuditEnabled = false
+                rubygemsEnabled = false
+                golangDepEnabled = false
+                golangModEnabled = false
+                pyDistributionEnabled = false
+                pyPackageEnabled = false
+            })
+        }
     }
 
 }
@@ -51,23 +67,5 @@ tasks {
     wrapper {
         gradleVersion = "6.0.1"
         distributionType = Wrapper.DistributionType.ALL
-    }
-
-
-    dependencyCheck {
-        analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
-            assemblyEnabled = false
-            nugetconfEnabled = false
-            nuspecEnabled = false
-            nodeEnabled = false
-            nodeAuditEnabled = false
-            swiftEnabled = false
-            bundleAuditEnabled = false
-            rubygemsEnabled = false
-            golangDepEnabled = false
-            golangModEnabled = false
-            pyDistributionEnabled = false
-            pyPackageEnabled = false
-        })
     }
 }
