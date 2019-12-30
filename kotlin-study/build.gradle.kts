@@ -24,7 +24,7 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation(kotlin("test-junit"))
 
-    compileOnly("javax.annotation:javax.annotation-api:1.2")
+    compileOnly("javax.annotation:javax.annotation-api:1.3.2")
 }
 
 application {
