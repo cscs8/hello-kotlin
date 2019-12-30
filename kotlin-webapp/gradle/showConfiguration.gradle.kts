@@ -1,5 +1,5 @@
-tasks.register("showConfiguration") {
-    configurations.stream().forEach {
-        println(it.name)
-    }
-}
+//tasks.register("showConfiguration") {
+//    configurations.stream().forEach {
+//        println(it.name)
+//    }
+//}
