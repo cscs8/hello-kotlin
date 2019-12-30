@@ -20,8 +20,6 @@ subprojects {
         plugin("org.owasp.dependencycheck")
 
         plugin("idea")
-        // application
-        plugin("org.gradle.application")
 
         plugin("jacoco")
 
