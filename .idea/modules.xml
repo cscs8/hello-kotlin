@@ -9,9 +9,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-study/hello-kotlin.kotlin-study.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-study/hello-kotlin.kotlin-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-study/hello-kotlin.kotlin-study.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-study/hello-kotlin.kotlin-study.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-study/hello-kotlin.kotlin-study.test.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-study/hello-kotlin.kotlin-study.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-webapp/hello-kotlin.kotlin-webapp.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-webapp/hello-kotlin.kotlin-webapp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-webapp/hello-kotlin.kotlin-webapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-webapp/hello-kotlin.kotlin-webapp.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-webapp/hello-kotlin.kotlin-webapp.test.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-webapp/hello-kotlin.kotlin-webapp.test.iml" />
     </modules>
   </component>
 </project>
