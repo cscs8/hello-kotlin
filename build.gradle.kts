@@ -12,6 +12,7 @@ plugins {
 
     id("com.github.spotbugs") version "3.0.0" apply false
 }
+apply(from = "gradle/owasp.gradle.kts")
 subprojects {
 
     apply {
@@ -56,9 +57,12 @@ subprojects {
                 pyDistributionEnabled = false
                 pyPackageEnabled = false
             })
+
+            failBuildOnCVSS = 8F // 10 is the maximum
+            val skipList: List<String> by project
+            skipConfigurations = skipList
         }
     }
-
 }
 tasks {
     wrapper {

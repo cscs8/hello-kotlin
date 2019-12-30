@@ -1,8 +1,8 @@
 plugins {
-    war
     id("org.gretty") version "3.0.1"
-}
 
+    war
+}
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -29,7 +29,8 @@ dependencies {
 
 }
 
+apply(from = "gradle/showConfiguration.gradle.kts")
 gretty {
-    //    servletContainer = "tomcat85"
-//    servletContainer = "tomcat8"
+    servletContainer = "tomcat9"
 }
+
