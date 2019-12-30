@@ -9,6 +9,8 @@ plugins {
     id("org.owasp.dependencycheck") version "5.2.4"
 
     id("de.fayard.refreshVersions") version "0.8.6"
+
+    id("com.github.spotbugs") version "3.0.0" apply false
 }
 subprojects {
 
@@ -22,6 +24,7 @@ subprojects {
 
         plugin("jacoco")
 
+        plugin("com.github.spotbugs")
     }
     tasks {
         withType<JavaCompile> {
