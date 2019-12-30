@@ -1,5 +1,4 @@
 val kotlinVersion by extra("1.3.61")
-val grpcVersion by extra("1.25.0")   // CURRENT_GRPC_VERSION
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
@@ -10,7 +9,10 @@ plugins {
     id("org.owasp.dependencycheck") version "5.2.4"
 
     id("de.fayard.refreshVersions") version "0.8.6"
+
+    id("com.github.spotbugs") version "3.0.0"
 }
+apply(from = "gradle/owasp.gradle.kts")
 subprojects {
 
     apply {
@@ -21,11 +23,9 @@ subprojects {
 
         plugin("idea")
 
-        plugin("org.gradle.application")
+        plugin("jacoco")
 
-        // application
-        plugin("org.gradle.application")
-
+        plugin("com.github.spotbugs")
     }
     tasks {
         withType<JavaCompile> {
@@ -33,39 +33,50 @@ subprojects {
         }
 
         withType<AbstractCompile> {
-            sourceCompatibility = JavaVersion.VERSION_1_8.majorVersion
-            targetCompatibility = JavaVersion.VERSION_1_8.majorVersion
+            sourceCompatibility = JavaVersion.VERSION_1_10.majorVersion
+            targetCompatibility = JavaVersion.VERSION_1_10.majorVersion
         }
 
         named<DefaultTask>("check") {
-            dependsOn(dependencyCheckAggregate)
+            dependsOn(dependencyCheckAnalyze)
             dependsOn(rootProject.tasks.refreshVersions)
+        }
+        // To generate an HTML report instead of XML
+        withType<com.github.spotbugs.SpotBugsTask> {
+            reports.xml.isEnabled = false
+            reports.html.isEnabled = true
+        }
+
+        dependencyCheck {
+            analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
+                assemblyEnabled = false
+                nugetconfEnabled = false
+                nuspecEnabled = false
+                nodeEnabled = false
+                nodeAuditEnabled = false
+                swiftEnabled = false
+                bundleAuditEnabled = false
+                rubygemsEnabled = false
+                golangDepEnabled = false
+                golangModEnabled = false
+                pyDistributionEnabled = false
+                pyPackageEnabled = false
+            })
+
+            failBuildOnCVSS = 8F // 10 is the maximum
+            val skipList: List<String> by project
+            skipConfigurations = skipList
+        }
+
+        spotbugs {
+            toolVersion = "4.0.0-beta4"
         }
 
     }
-
 }
 tasks {
     wrapper {
         gradleVersion = "6.0.1"
         distributionType = Wrapper.DistributionType.ALL
-    }
-
-
-    dependencyCheck {
-        analyzers(delegateClosureOf<org.owasp.dependencycheck.gradle.extension.AnalyzerExtension> {
-            assemblyEnabled = false
-            nugetconfEnabled = false
-            nuspecEnabled = false
-            nodeEnabled = false
-            nodeAuditEnabled = false
-            swiftEnabled = false
-            bundleAuditEnabled = false
-            rubygemsEnabled = false
-            golangDepEnabled = false
-            golangModEnabled = false
-            pyDistributionEnabled = false
-            pyPackageEnabled = false
-        })
     }
 }
