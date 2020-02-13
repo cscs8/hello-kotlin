@@ -6,7 +6,7 @@ plugins {
 
     idea
 
-    id("org.owasp.dependencycheck") version "5.2.4"
+    id("org.owasp.dependencycheck") version "5.3.0"
 
     id("de.fayard.refreshVersions") version "0.8.6"
 
@@ -76,7 +76,7 @@ subprojects {
 }
 tasks {
     wrapper {
-        gradleVersion = "6.0.1"
+        gradleVersion = "6.1.1"
         distributionType = Wrapper.DistributionType.ALL
     }
 }

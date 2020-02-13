@@ -3,6 +3,10 @@
  */
 package study
 
+import study.list6.CountingGreeter
+import study.list6.EnglishGreeter
+import study.list6.Greeter
+
 class App {
     val greeting: String
         get() {
@@ -12,4 +16,13 @@ class App {
 
 fun main(args: Array<String>) {
     println(App().greeting)
+    val e = EnglishGreeter("Hiroshi")
+    val c = CountingGreeter(e)
+    println(e.introduceMySelf())
+    println(e.sayHello())
+    println(e.sayHello())
+    println(c.introduceMySelf())
+    println(c.sayHello())
+    println(c.sayHello())
+    println(c.sayHello())
 }

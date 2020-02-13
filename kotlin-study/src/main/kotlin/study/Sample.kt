@@ -1,3 +1,5 @@
+package study
+
 class Sample {
     fun contains(ints: List<Int>, predicate: (Int) -> Boolean): Boolean {
         for (i in ints) {
