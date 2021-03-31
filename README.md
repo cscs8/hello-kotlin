@@ -5,3 +5,5 @@
 
 - develop
 ![Actions Status](https://github.com/cscs8/hello-kotlin/workflows/Java%20CI/badge.svg?branch=develop)
+
+test
